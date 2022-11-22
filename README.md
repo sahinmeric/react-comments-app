@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# react-comments-app
+This repo is created for the front-end developer test given by MediSprout company.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
