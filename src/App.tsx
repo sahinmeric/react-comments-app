@@ -2,6 +2,7 @@ import './App.css';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Route, Routes } from "react-router-dom";
+//components
 import Comments from "./Comments";
 import CommentDetail from './CommentDetail';
 import NotFound from './NotFound';
@@ -22,7 +23,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <Routes>
                 <Route path='/' element={<Comments />} />
-                <Route path='/:id' element={<CommentDetail />} />
+                <Route path='/:commentId' element={<CommentDetail />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
             <ReactQueryDevtools initialIsOpen />
