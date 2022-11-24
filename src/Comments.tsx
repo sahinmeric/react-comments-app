@@ -10,7 +10,7 @@ type Comment = {
     body: string;
 };
 
-function useComments() {
+export function useComments() {
     return useQuery(["comments"], async (): Promise<Array<Comment>> => {
         const { data } = await axios.get(
             "http://jsonplaceholder.typicode.com/posts/1/comments"
@@ -32,7 +32,7 @@ function Comments() {
             <ul>
                 {comment?.map((comment) => (
                     <li key={comment.id}>
-                        <Link to="/comment-detail" >{comment.name}</Link>
+                        <Link to={`/${comment.id}`} >{comment.name}</Link>
                     </li>
                 ))}
             </ul>
