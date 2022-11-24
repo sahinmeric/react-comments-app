@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 type Comment = {
     commentId: number;
@@ -9,7 +10,7 @@ type Comment = {
     body: string;
 };
 
-function useComments() { //custom react hook function to fetch data through Api
+function useComments() {
     return useQuery(["comments"], async (): Promise<Array<Comment>> => {
         const { data } = await axios.get(
             "http://jsonplaceholder.typicode.com/posts/1/comments"
@@ -30,7 +31,9 @@ function Comments() {
         <>
             <ul>
                 {comment?.map((comment) => (
-                    <li key={ comment.id }>{ comment.name }</li>
+                    <li key={comment.id}>
+                        <Link to="/comment-detail" >{comment.name}</Link>
+                    </li>
                 ))}
             </ul>
             <div>{isFetching ? "Comments loading..." : " "}</div>
