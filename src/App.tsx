@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Route, Routes } from "react-router-dom";
-//components
+
 import Comments from "./Comments";
-import CommentDetail from './CommentDetail';
-import NotFound from './NotFound';
+import CommentDetail from "./CommentDetail";
+import NotFound from "./NotFound";
+
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,15 +19,14 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-
     return (
         <QueryClientProvider client={queryClient}>
             <Routes>
-                <Route path='/' element={<Comments />} />
-                <Route path='/:commentId' element={<CommentDetail />} />
-                <Route path='*' element={<NotFound />} />
+                <Route path="/" element={<Comments />} />
+                <Route path="/:commentId" element={<CommentDetail />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
-            <ReactQueryDevtools initialIsOpen />
+            <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     );
 }
