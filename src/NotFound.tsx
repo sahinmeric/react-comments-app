@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +8,7 @@ function NotFound() {
     useEffect(() => {
         setTimeout(() => {
             navigate("/")
-        }, 2000)
+        }, 3000)
     }, [navigate])
     return (
         <div>
