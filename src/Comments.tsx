@@ -1,8 +1,11 @@
+import React from 'react';
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import NotFound from "./NotFound";
+import ShowProgress from "./ShowProgress";
+import CommentBox from "./CommentBox"
 
-type Comment = {
+export type CommentType = {
     commentId: number;
     id: number;
     name: string;
@@ -11,7 +14,7 @@ type Comment = {
 };
 
 export function useComments() {
-    return useQuery(["comments"], async (): Promise<Array<Comment>> => {
+    return useQuery(["comments"], async (): Promise<Array<CommentType>> => {
         const { data } = await axios.get(
             "http://jsonplaceholder.typicode.com/posts/1/comments"
         );
@@ -21,22 +24,24 @@ export function useComments() {
 
 function Comments() {
     const { data: comment, error, isFetching, isLoading } = useComments();
-    if (isLoading) {
-        return <p>Loading...</p>
+    if (isLoading || isFetching) {
+        return (
+            <ShowProgress />
+        );
     }
-    if (error) {
-        return <p>Error</p>
+    if (error || !comment) {
+        return <NotFound />
     }
     return (
         <>
             <ul>
+                <h1 style={{ padding: 10, margin: 'auto', width: '50%', textAlign: "center" }}>Comments</h1>
                 {comment?.map((comment) => (
                     <li key={comment.id}>
-                        <Link to={`/${comment.id}`} >{comment.name}</Link>
+                        <CommentBox commentId={comment.commentId} id={comment.id} name={comment.name} email={comment.email} body={comment.body}></CommentBox>
                     </li>
                 ))}
             </ul>
-            <div>{isFetching ? "Comments loading..." : " "}</div>
         </>
     );
 }
