@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import NotFound from "./NotFound";
 import ShowProgress from "./ShowProgress";
-import CommentBox from "./CommentBox"
+import CommentCard from "./CommentCard"
 import { Typography } from "@mui/material";
 
 
@@ -42,13 +42,14 @@ function Comments() {
                         padding: 10,
                         margin: "auto",
                         width: "50%",
-                        textAlign: "center"
+                        textAlign: "center",
+                        color:"#192F52"
                     }}>
                     Comments
                 </Typography>
                 {comment?.map((comment) => (
                     <li key={comment.id}>
-                        <CommentBox
+                        <CommentCard
                             commentId={comment.commentId}
                             id={comment.id}
                             name={comment.name}
