@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 //material ui components
-import { Grid, Paper, Container, Button, Avatar } from "@mui/material";
+import { Grid, Paper, Container, Button, Avatar, CardActionArea } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import { useComments } from "./Comments";
@@ -23,32 +23,34 @@ function CommentDetail() {
         return <NotFound />
     }
     return (
-        <Container maxWidth="xs" style={{ padding: 5, margin: "auto" }}>
-            <Paper
-                elevation={8}
-                style={{
-                    padding: "10px 10px",
-                    border: "1px solid lightgray",
-                    backgroundColor: "#C6EBEB"
-                }}>
-                <Grid container wrap="wrap" spacing={2}>
-                    <Grid item>
-                        <Avatar alt="Avatar" src={user} />
+        <Container maxWidth="xs" style={{ padding: "2px", margin: "auto" }}>
+            <CardActionArea onClick={() => navigate(-1)}>
+                <Paper
+                    elevation={8}
+                    style={{
+                        padding: "10px 10px",
+                        border: "1px solid lightgray",
+                        backgroundColor: "#C6EBEB"
+                    }}>
+                    <Grid container wrap="wrap" spacing={2}>
+                        <Grid item>
+                            <Avatar alt="Avatar" src={user} />
+                        </Grid>
+                        <Grid justifyContent="left" item xs zeroMinWidth>
+                            <h4
+                                style={{
+                                    margin: "5px",
+                                    padding: "5px 0",
+                                    textAlign: "left",
+                                    color: "#192F52"
+                                }}>
+                                <b>{comment.name}</b></h4>
+                            <em style={{ color: "#192F52", padding: "5px" }}>“{comment.body}”</em>
+                            <p style={{ textAlign: "right", color: "gray" }}>{comment.email}</p>
+                        </Grid>
                     </Grid>
-                    <Grid justifyContent="left" item xs zeroMinWidth>
-                        <h4
-                            style={{
-                                margin: 0,
-                                padding: "5px 0",
-                                textAlign: "left",
-                                color: "#192F52"
-                            }}>
-                            <b>{comment.name}</b></h4>
-                        <em style={{ color: "#192F52", padding: "5px" }}>“{comment.body}”</em>
-                        <p style={{ textAlign: "right", color: "gray" }}>{comment.email}</p>
-                    </Grid>
-                </Grid>
-            </Paper>
+                </Paper>
+            </CardActionArea>
             <Button
                 style={{ margin: "5px 0" }}
                 variant="contained"
@@ -58,7 +60,8 @@ function CommentDetail() {
                 onClick={() => navigate(-1)}>
                 BACK
             </Button>
-        </Container>
+        </Container >
+
     )
 }
 
