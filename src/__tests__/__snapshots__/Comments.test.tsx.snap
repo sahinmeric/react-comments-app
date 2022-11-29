@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Comments test suit if it renders without crash 1`] = `
+exports[`Comments test suit renders 1`] = `
 <div
   className="MuiBox-root css-0"
   style={
